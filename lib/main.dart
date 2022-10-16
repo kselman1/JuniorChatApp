@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:junior_chat_app/screens/welcome_screen.dart';
 import 'package:junior_chat_app/screens/login_screen.dart';
@@ -5,13 +7,31 @@ import 'package:junior_chat_app/screens/registration_screen.dart';
 import 'package:junior_chat_app/screens/chat_screen.dart';
 
 
-void main() => runApp(FlashChat());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
 
-class FlashChat extends StatelessWidget {
+  await Firebase.initializeApp(options: FirebaseOptions(
+      apiKey: "AIzaSyCoku59n1cutUibvphJTMyKr2a5WptpohA",
+      appId: "1:41076482467:ios:79bc51830728de9855fa16",
+      messagingSenderId: "41076482467",
+      projectId: "juniorchatapp",
+    ));
+  runApp(FlashChat());
+
+}
+
+class FlashChat extends StatefulWidget {
+  @override
+  State<FlashChat> createState() => _FlashChatState();
+}
+
+class _FlashChatState extends State<FlashChat> {
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: WelcomeScreen.id,
+
+      initialRoute: FirebaseAuth.instance.currentUser ==null ? WelcomeScreen.id : ChatScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

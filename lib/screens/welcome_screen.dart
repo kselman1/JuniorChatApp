@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:junior_chat_app/const.dart';
 import '../rounded_button.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
@@ -42,44 +43,40 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: animation.value,
+      //backgroundColor: animation.value,
+      backgroundColor:bckolor,
+     
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: 60.0,
+            Container(
+              child:Center(
+                    child: Container(
+                      
+                      height: 220.0,
+                      child: Center(child: Image.asset('assets/images/logo.png')),
+                    ),
                   ),
-                ),
-               /* TypewriterAnimatedTextKit(
-                  text: ['Flash Chat'],
-                  textStyle: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),*/
-              ],
+                
+               
+              
             ),
             SizedBox(
               height: 48.0,
             ),
             RoundedButton(
               title: 'Log In',
-              colour: Colors.lightBlueAccent,
+              colour: orangeColor,
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.id);
               },
             ),
             RoundedButton(
               title: 'Register',
-              colour: Colors.blueAccent,
+              colour: darkOrangeColor,
               onPressed: () {
                 Navigator.pushNamed(context, RegistrationScreen.id);
               },

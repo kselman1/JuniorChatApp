@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: bckolor,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -35,28 +35,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('assets/images/logo.png'),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48.0,
               ),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
+                style: const TextStyle(color: whiteColor),
                 onChanged: (value) {
                   email = value;
                 },
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8.0,
               ),
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.center,
+                style: const TextStyle(color: whiteColor),
                 onChanged: (value) {
                   password = value;
                 },
@@ -68,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               RoundedButton(
                 title: 'Log In',
-                colour: Colors.lightBlueAccent,
+                colour: orangeColor,
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;

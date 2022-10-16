@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "41076482467",
+    "project_id": "juniorchatapp",
+    "storage_bucket": "juniorchatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41076482467:android:d6dbdd0932ebd57f55fa16",
+        "android_client_info": {
+          "package_name": "com.example.junior_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41076482467-dcf8jfupn2hs5rt1cpuea89njpqriqf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdTl6QB2Qk0rUHKBu63Vc0EXMbLMnriWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41076482467-dcf8jfupn2hs5rt1cpuea89njpqriqf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

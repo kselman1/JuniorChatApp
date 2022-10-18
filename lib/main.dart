@@ -16,16 +16,16 @@ void main() async{
       messagingSenderId: "41076482467",
       projectId: "juniorchatapp",
     ));
-  runApp(FlashChat());
+  runApp(JuniorChatApp());
 
 }
 
-class FlashChat extends StatefulWidget {
+class JuniorChatApp extends StatefulWidget {
   @override
-  State<FlashChat> createState() => _FlashChatState();
+  State<JuniorChatApp> createState() => _JuniorChatAppState();
 }
 
-class _FlashChatState extends State<FlashChat> {
+class _JuniorChatAppState extends State<JuniorChatApp> {
   
  
   @override

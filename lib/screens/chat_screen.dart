@@ -3,9 +3,11 @@ import 'package:junior_chat_app/const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:junior_chat_app/screens/welcome_screen.dart';
+import '../widgets/drawer.dart';
 
 final _firestore = FirebaseFirestore.instance;
 User? loggedInUser;
+var time=DateTime.now();
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -16,6 +18,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
+  
 
   late String messageText;
 
@@ -25,7 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     getCurrentUser();
   }
-
+   
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser!;
@@ -41,7 +44,18 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
+        
+         leading: Builder(
+            builder: (context) => InkWell(
+              onTap: () => Scaffold.of(context).openDrawer(),
+             child: const Icon(
+              Icons.chat,
+              color: Colors.white,
+             size: 25.0,
+              ),
+
+            ),
+          ),
         actions: <Widget>[
           IconButton(
               icon: const Icon(Icons.logout_rounded),
@@ -52,14 +66,10 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
         title: const Text('Chat'),
         backgroundColor: const Color.fromARGB(255, 16, 11, 11),
-       /* leading: Builder(
-            builder: (context) => InkWell(
-              onTap: () => Scaffold.of(context).openDrawer(),
-             
-            ),
-          ),*/
+       
       ),
-     // drawer: const UsersDrawerWidget(),
+      drawer:  const UsersDrawerWidget(),
+
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,10 +94,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   TextButton(
                     onPressed: () {
                       messageTextController.clear();
-                      _firestore.collection('messages').add({
+                      _firestore.collection('Messages').add({
                         'text': messageText,
                         'sender': loggedInUser?.email,
+                        'time':time
                       });
+                    
                     },
                     child: const Text(
                       'Send',
@@ -105,10 +117,11 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class MessagesStream extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('messages').snapshots(),
+      stream: _firestore.collection("Messages").orderBy('time',descending: false).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(

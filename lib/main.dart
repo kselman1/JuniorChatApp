@@ -26,11 +26,13 @@ class FlashChat extends StatefulWidget {
 }
 
 class _FlashChatState extends State<FlashChat> {
+  
  
   @override
   Widget build(BuildContext context) {
+   
     return MaterialApp(
-
+    
       initialRoute: FirebaseAuth.instance.currentUser ==null ? WelcomeScreen.id : ChatScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
@@ -41,6 +43,7 @@ class _FlashChatState extends State<FlashChat> {
     );
   }
 }
+
 
 
 
